@@ -9,7 +9,7 @@
 class UInputComponent;
 
 UCLASS(config=Game)
-class AUdemy5TestingGroundsCharacter : public ACharacter
+class AFirstPersonCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -46,7 +46,7 @@ class AUdemy5TestingGroundsCharacter : public ACharacter
 	class UMotionControllerComponent* L_MotionController;
 
 public:
-	AUdemy5TestingGroundsCharacter();
+	AFirstPersonCharacter();
 
 protected:
 	virtual void BeginPlay();
@@ -66,7 +66,7 @@ public:
 
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
-	TSubclassOf<class AUdemy5TestingGroundsProjectile> ProjectileClass;
+	TSubclassOf<class ABallProjectile> ProjectileClass;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
