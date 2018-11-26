@@ -4,6 +4,7 @@
 #include "Weapons/BallProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "MotionControllerComponent.h"
+#include "XRMotionControllerBase.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -48,7 +49,7 @@ AGun::AGun()
 
 	// Create VR Controllers.
 	R_MotionController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("R_MotionController"));
-	R_MotionController->Hand = EControllerHand::Right;
+	//R_MotionController->Hand = EControllerHand::Right;
 	R_MotionController->SetupAttachment(RootComponent);
 	L_MotionController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("L_MotionController"));
 	L_MotionController->SetupAttachment(RootComponent);
