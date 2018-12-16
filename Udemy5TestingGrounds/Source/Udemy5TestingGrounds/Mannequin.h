@@ -33,7 +33,7 @@ public:
 
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	void Fire();
+	void PullTrigger();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FirstPersonCameraComponent;
