@@ -44,5 +44,5 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (AllowPrivateAccess = "true"))
 	AGun* Gun;
 
-
+	void UnPossessed() override;
 };
