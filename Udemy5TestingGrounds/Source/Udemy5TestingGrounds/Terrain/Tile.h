@@ -27,10 +27,10 @@ public:
 
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Terrain")
-	void PlaceActors(TSubclassOf<AActor> ToSpawn, int MinSpawn = 1, int MaxSpawn = 1, float Radius = 500.f);
+	void PlaceActors(TSubclassOf<AActor> ToSpawn, int MinSpawn = 1, int MaxSpawn = 1, float Radius = 500.f, float MinScale = 1.f, float MaxScale = 1.f);
 
 private:
 	bool FindEmptyLocation(FVector& OutLocation, float Radius);
-	void PlaceActor(TSubclassOf<AActor> ToSpawn, FVector SpawnPoint);
+	void PlaceActor(TSubclassOf<AActor> ToSpawn, FVector SpawnPoint, float Rotation, float Scale);
 
 };
