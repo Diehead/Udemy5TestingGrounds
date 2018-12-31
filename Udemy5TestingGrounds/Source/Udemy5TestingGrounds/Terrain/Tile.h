@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Tile.generated.h"
 
+class UActorPoolComponent; //forward declaration
+
 UCLASS()
 class UDEMY5TESTINGGROUNDS_API ATile : public AActor
 {
@@ -14,6 +16,13 @@ class UDEMY5TESTINGGROUNDS_API ATile : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ATile();
+	
+	UFUNCTION(BlueprintCallable, Category = "Pool")
+	void SetPool(UActorPoolComponent* ActorPoolToAdd);
+
+
+	UPROPERTY(VisibleAnywhere, Category = "Pool")
+	UActorPoolComponent* ActorPool;
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,6 +31,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	bool CanSpawnAtLocation(FVector Location, float Radius);
 
@@ -33,4 +44,7 @@ private:
 	bool FindEmptyLocation(FVector& OutLocation, float Radius);
 	void PlaceActor(TSubclassOf<AActor> ToSpawn, FVector SpawnPoint, float Rotation, float Scale);
 
+private:
+	void PositionNavMeshBoundsVolume();
+	AActor* NavMeshBoundsVolume;
 };

@@ -3,6 +3,7 @@
 #include "Tile.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
+#include "ActorPoolComponent.h"
 
 // Sets default values
 ATile::ATile()
@@ -91,4 +92,31 @@ bool ATile::CanSpawnAtLocation(FVector Location, float Radius)
 	// DrawDebugCapsule(GetWorld(), GlobalLocation, 0, Radius, FQuat::Identity, ResultColor, true, 100);
 
 	return !HasHit;
+}
+
+
+void ATile::SetPool(UActorPoolComponent* ActorPoolToAdd)
+{
+	ActorPool = ActorPoolToAdd;
+
+	PositionNavMeshBoundsVolume();
+}
+
+void ATile::PositionNavMeshBoundsVolume()
+{
+	NavMeshBoundsVolume = ActorPool->Checkout();
+	if (NavMeshBoundsVolume == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Not enough actors in pool."));
+		return;
+	}
+	NavMeshBoundsVolume->SetActorLocation(GetActorLocation());
+}
+
+
+void ATile::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	ActorPool->Return(NavMeshBoundsVolume);
+
 }
