@@ -16,13 +16,15 @@ public:
 	// Sets default values for this component's properties
 	UActorPoolComponent();
 
-protected:
-	
-
-public:	
 	AActor* Checkout();
 	void Return(AActor* ActorToReturn);
 	void Add(AActor* ActorToReturn);
+
+protected:
+
+
+private:
+	TArray<AActor*> Pool;	
 
 		
 };
